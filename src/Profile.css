@@ -77,20 +77,8 @@ span.fa-envelope{
   left: 56%;
 
 }
-span.profile-photo{
-  position: relative;
-  height: 80px;
-  width: 80px;
-  border-radius: 5px;
-  margin: 10px 0 2.5px;
-  display: block;
-  top: 10%;
-  left: 10%;
-  overflow: hidden;
-  background: #ddd url("https://www.adtechnology.co.uk/images/UGM-default-user.png");
-  background-size: 100%;
-  border-radius: 100%;
-  border: 2px solid #ddd;
+img.profile-photo{
+  position: relative; width: 200px; height: 200px; overflow: hidden; border-radius: 50%;
 }
 span.photo:after{
   content: " Add Profile Pic ";

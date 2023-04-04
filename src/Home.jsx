@@ -2,17 +2,30 @@ import './Home.css';
 import React from "react";
 import UserList from './UserList'
 
-function Home ({createRating, user, users}) {
+function Home ({createRating, user, users, selectedGender, genderOptions, handleChangeForCategoryUpdate, updateCategory, filterGender, setSelectedGender }) {
 
 
 
-
+ 
 
 
 
 return (
     <>
-    <UserList LoggedInUser={user} users={users} createRating={createRating}/>
+    {/* <div className="grid-35">
+    <select name="gender" onChange={(e) => {
+          filterGender(e.target.value)
+          setSelectedGender(e.targetvalue)
+        }}>
+            <option  selected="selected" value="--------------" disabled>--------------</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Transgender">Transgender</option>
+              <option value="Non-binary">Non-binary</option>
+            </select>
+            <input type="submit" value="Filter by..."/>
+            </div> */}
+    <UserList LoggedInUser={user} users={users} createRating={createRating} handleChangeForCategoryUpdate={handleChangeForCategoryUpdate} updateCategory={updateCategory}/>
     {/* <div className="home-boarder-box">
     <div className="home-wrap">
   <div className="home-box">

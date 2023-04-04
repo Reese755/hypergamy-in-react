@@ -14,17 +14,24 @@ import About from "./About"
 
 function App() {
   const [user, setUser] = useState(null)
+  const [rating, setRating] = useState(null)
+  const [category, setCategory] = useState(null)
   const [users, setUsers] = useState([])
   const [ratings, setRatings] = useState([])
+  const [categories, setCategories] = useState([])
   const [loginFormData, setLoginFormData] = useState({})
   const [signupFormData, setSignupFormData] = useState({})
   const [updateRatingFormData, setUpdateRatingFormData] = useState({})
+  const [updateCategoryFormData, setUpdateCategoryFormData] = useState({})
   const [updateUserFormData, setUpdateUserFormData] = useState({})
   const [selectedGender, setSelectedGender] = useState('All');
+  const [selectedEthnicity, setSelectedEthnicity] = useState('All');
+  const [selectedSexualOrientation, setSelectedSexualOrientation] = useState('All');
 
   const genderOptions = ['All', 'Male', 'Female', 'Trans', 'Non-binary'];
+  const ethnicityOptions =['White', 'Black/African American', 'Hispanic/Latino', 'Pacific Islander/Native Hawaiian', 'Asian', 'Native American']
+  const sexualOrientationOptions = ['Straight', 'Gay', 'Lesbian', 'Bisexual', 'Queer']
 
-  
 // Handles user log in
 function onLogin(event){
   event.preventDefault()
@@ -201,6 +208,55 @@ function deleteAccount() {
 });
 }
 
+useEffect(() => {
+  fetch('/categories')
+  .then(response => response.json())
+  .then(categoryData => {
+      setCategories(categoryData)
+  })
+  }, [])
+
+  function updateCategory(event, id){
+    fetch(`/categories`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        value: event.target.textContent,
+        user_id: user.id,
+        rating_id: rating.id,
+        gender: id
+      })
+    })
+    .then(response => response.json())
+    .then(newCategory => setCategories(categories.map(category => {
+      if(category.id === event.target.textContent){
+        return newCategory
+      }
+      else{
+        return category
+      }
+    })))
+  }
+
+  function handleChangeForCategoryUpdate(event){
+    if(event.target.name === 'category'){
+      setUpdateCategoryFormData({ ...updateCategoryFormData, [event.target.name]: event.target.value})
+    }
+  }
+
+  function filterGender(inputText){
+    if(inputText === 'All') {
+      setSelectedGender(users)
+    }
+    else {
+      setSelectedGender(users.filter(user => {
+        return user.name
+      }))
+    }
+  }
+  
 // useEffect(() => {
 //   fetch('/surveys')
 //   .then(response => response.json())
@@ -259,7 +315,7 @@ function deleteAccount() {
             {user ?  <About /> : "Please log in to view about page"}
           </Route>
            <Route path="/">
-            {user ? <Home handleChangeForRatingUpdate={handleChangeForRatingUpdate} createRating={createRating} user={user} users={users}/> : "Please log in to view Home Page"}
+            {user ? <Home handleChangeForRatingUpdate={handleChangeForRatingUpdate} createRating={createRating} user={user} users={users} selectedGender={selectedGender} filterGender={filterGender} setSelectedGender={setSelectedGender}/> : "Please log in to view Home Page"}
            </Route>
          
         </Switch>

@@ -19,7 +19,7 @@ return (
             <label>Your Photo</label>
           </div>
           <div className="grid-65">
-            <span className="profile-photo" title="Upload your Avatar!"></span>
+            <img className="profile-photo" src={user.profile_picture} alt="profile" ></img>
             <input type="file" className="profile-btn" />
           </div>
         </fieldset>
@@ -166,28 +166,11 @@ return (
               <option value="Transgender">Transgender</option>
               <option value="Non-binary">Non-binary</option>
             </select>
-            <input type="submit" value="update location"/>
+            <input type="submit" value="update gender"/>
           </div>
         </fieldset>
         </form>
-        {/* <!-- School --> */}
-        <fieldset>
-          <div className="grid-35">
-            <label>School Name</label>
-          </div>
-          <div className="grid-65">
-            <input type="text" id="school" tabIndex="7" />
-          </div>
-        </fieldset>
-        {/* <!-- Company Name --> */}
-        <fieldset>
-          <div className="grid-35">
-            <label>Company Name</label>
-          </div>
-          <div className="grid-65">
-            <input type="text" id="company" tabIndex="8" />
-          </div>
-        </fieldset>
+    
 
        
         <fieldset>

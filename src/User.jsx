@@ -19,8 +19,10 @@ const button10 = <button className= "rating-button"onClick={(e) => createRating(
       <img className="home-box-image" src={user.profile_picture} alt="profile"/>
       <div className="home-title-flex">
         <h3 className="home-box-title">{user.name}</h3>
+        <h6> Age: {user.age} </h6>
         <h6> Height: {user.height} </h6>
         <h6> Weight: {user.weight} </h6>
+        <h6> Gender: {user.gender} </h6>
       </div>
     </div>
     <div className="rating-buttons">
