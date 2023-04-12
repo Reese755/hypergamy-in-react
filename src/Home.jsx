@@ -2,47 +2,33 @@ import './Home.css';
 import React from "react";
 import UserList from './UserList'
 
-function Home ({createRating, user, users, selectedGender, genderOptions, handleChangeForCategoryUpdate, updateCategory, filterGender, setSelectedGender }) {
+function Home ({createRating, user, users, selectedGender, genderOptions, handleChangeForCategoryUpdate, updateCategory, setSelectedGender, filterValueSelected }) {
 
 
 
- 
+  function filterGender(event){
+    filterValueSelected(event.target)
+  }
 
 
 
 return (
     <>
-    {/* <div className="grid-35">
+    <div className="grid-35">
     <select name="gender" onChange={(e) => {
-          filterGender(e.target.value)
-          setSelectedGender(e.targetvalue)
+          filterGender(e.target)
+          setSelectedGender(e.target)
         }}>
             <option  selected="selected" value="--------------" disabled>--------------</option>
+              <option value="All">All</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
               <option value="Transgender">Transgender</option>
               <option value="Non-binary">Non-binary</option>
             </select>
             <input type="submit" value="Filter by..."/>
-            </div> */}
+            </div>
     <UserList LoggedInUser={user} users={users} createRating={createRating} handleChangeForCategoryUpdate={handleChangeForCategoryUpdate} updateCategory={updateCategory}/>
-    {/* <div className="home-boarder-box">
-    <div className="home-wrap">
-  <div className="home-box">
-    <div className="home-box-top">
-      <img className="home-box-image" src="https://images.unsplash.com/photo-1456885284447-7dd4bb8720bf?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYyMzMxNTQzNA&ixlib=rb-1.2.1&q=85" alt="Girl Eating Pizza"/>
-      <div className="home-title-flex">
-        <h3 className="home-box-title">Taylor Green</h3>
-      </div>
-    </div>
-    <div className="rating-buttons">
-    {button1}{button2}{button3}{button4}{button5}{button6}{button7}{button8}{button9}{button10}
-    </div>
-  </div>
-  
-</div>
-</div> */}
-{/* <img className="home-box-image" src="https://images.unsplash.com/photo-1456885284447-7dd4bb8720bf?crop=entropy&cs=srgb&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTYyMzMxNTQzNA&ixlib=rb-1.2.1&q=85" alt="Girl Eating Pizza"/> */}
     </>
     )
 }

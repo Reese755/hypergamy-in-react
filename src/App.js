@@ -24,7 +24,7 @@ function App() {
   const [updateRatingFormData, setUpdateRatingFormData] = useState({})
   const [updateCategoryFormData, setUpdateCategoryFormData] = useState({})
   const [updateUserFormData, setUpdateUserFormData] = useState({})
-  const [selectedGender, setSelectedGender] = useState('All');
+  const [selectedGender, setSelectedGender] = useState('');
   const [selectedEthnicity, setSelectedEthnicity] = useState('All');
   const [selectedSexualOrientation, setSelectedSexualOrientation] = useState('All');
 
@@ -246,17 +246,19 @@ useEffect(() => {
     }
   }
 
-  function filterGender(inputText){
-    if(inputText === 'All') {
-      setSelectedGender(users)
+  const filterUserGender = users.filter((user) => {
+    if(users === "All") {
+      return user.gender === true;
     }
-    else {
-      setSelectedGender(users.filter(user => {
-        return user.name
-      }))
-    }
+      else {
+      return user
+      }
+    
+  })
+
+  function filterValueSelected(filterValue) {
+     setSelectedGender(filterValue)
   }
-  
 // useEffect(() => {
 //   fetch('/surveys')
 //   .then(response => response.json())
@@ -315,7 +317,7 @@ useEffect(() => {
             {user ?  <About /> : "Please log in to view about page"}
           </Route>
            <Route path="/">
-            {user ? <Home handleChangeForRatingUpdate={handleChangeForRatingUpdate} createRating={createRating} user={user} users={users} selectedGender={selectedGender} filterGender={filterGender} setSelectedGender={setSelectedGender}/> : "Please log in to view Home Page"}
+            {user ? <Home handleChangeForRatingUpdate={handleChangeForRatingUpdate} createRating={createRating} user={user} users={users} selectedGender={selectedGender} setSelectedGender={setSelectedGender} filterValueSelected={filterUserGender}/> : "Please log in to view Home Page"}
            </Route>
          
         </Switch>
